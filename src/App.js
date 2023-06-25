@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useMemo } from 'react';
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import WeatherForm from './components/WeatherForm';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 
 function App() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyBCozVYPnYOjlvwPjdvdNnKBIR8EkLJaE0",
+  });
+  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <WeatherForm />
+      <Footer />
     </div>
   );
 }
